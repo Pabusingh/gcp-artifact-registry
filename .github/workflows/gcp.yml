@@ -25,8 +25,18 @@ jobs:
         ls -a
         echo what environment variables are available
         env
-        echo GITHUB_TOKEN
-        $GITHUB_TOKEN    
+    - name:  Set environment variable
+      run: |
+        echo "ENVIRONMENT=dev" >> $GITHUB_ENV
+
+    - name:  Get environment value
+      run: echo "ENVIRONMENT=$ENVIRONMENT"
+      env:
+        IMAGE_TAG: ${{ env.ENVIRONMENT }}
+
+    - name:  Get Image tag
+      run: |
+        echo "echo IMAGE_TAG:$IMAGE_TAG"                    
 
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
