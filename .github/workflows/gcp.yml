@@ -24,7 +24,7 @@ jobs:
         echo what is this directory?
         ls -a
         echo what environment variables are available
-        env
+        echo "GITHUB_SHA=$GITHUB_SHA"
     - name:  Set environment variable
       run: |
         echo "ENVIRONMENT=dev" >> $GITHUB_ENV
