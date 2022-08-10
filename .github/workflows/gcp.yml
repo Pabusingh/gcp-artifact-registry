@@ -3,10 +3,13 @@ name: Build and Push Python Image to Google Cloud Platform
 on:
   push:
     branches: [ main ]
-permissions: write-all
 
 jobs:
   build-push-gcr:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     name: Build and Push to GCP
     runs-on: ubuntu-latest
     env:
@@ -20,7 +23,7 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v0'
       with:
-        workload_identity_provider: 'projects/325316670694/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+        workload_identity_provider: 'projects/325316670694/locations/global/workloadIdentityPools/github-actions/providers/github-actions'
         service_account: 'my-service-account@rare-mechanic-358909.iam.gserviceaccount.com'
         
     - name: 'Set up Cloud SDK'
@@ -35,7 +38,7 @@ jobs:
 
     - name: Push Docker Image to Artifact Registry
       env:
-        GIT_TAG: 'v0.0.1'
+        GIT_TAG: 'v0.0.2'
       run: |-
         docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:latest
         docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$GIT_TAG
