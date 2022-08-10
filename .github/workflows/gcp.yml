@@ -17,7 +17,16 @@ jobs:
       PROJECT_ID: rare-mechanic-358909
     steps:
     - name: Checkout
-      uses: actions/checkout@v2  
+      uses: actions/checkout@v2
+
+    - name:  Run multiline script
+      run: |
+        echo what is this directory?
+        ls -a
+        echo what environment variables are available
+        env
+        echo GITHUB_TOKEN
+        $GITHUB_TOKEN    
 
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
