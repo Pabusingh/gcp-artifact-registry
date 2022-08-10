@@ -27,7 +27,7 @@ jobs:
         echo "GITHUB_SHA=$GITHUB_SHA"
     - name:  Set environment variable
       run: |
-        echo git_sha=`echo $GIT_SHA | cut -c -8` >> $GITHUB_ENV
+        echo "git_sha=`echo $GIT_SHA | cut -c -8`" >> $GITHUB_ENV
         echo "ENVIRONMENT=dev" >> $GITHUB_ENV
 
     - name:  Get environment value
