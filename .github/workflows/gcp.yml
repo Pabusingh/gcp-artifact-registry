@@ -60,9 +60,9 @@ jobs:
       env:
         GIT_TAG: ${{ env.git_sha }}-${{ env.ENVIRONMENT }}
       run: |-
-        docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:latest
+        docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$ENVIRONMENT
         docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$GIT_TAG
-        docker push us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:latest
+        docker push us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$ENVIRONMENT
         docker push us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$GIT_TAG            
 
 
