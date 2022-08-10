@@ -27,6 +27,7 @@ jobs:
         echo "GITHUB_SHA=$GITHUB_SHA"
     - name:  Set environment variable
       run: |
+        echo git_sha=`echo $GIT_SHA | cut -c -8` >> $GITHUB_ENV
         echo "ENVIRONMENT=dev" >> $GITHUB_ENV
 
     - name:  Get environment value
@@ -57,7 +58,7 @@ jobs:
 
     - name: Push Docker Image to Artifact Registry
       env:
-        GIT_TAG: 'v0.0.2'
+        GIT_TAG: ${{ env.git_sha }}-${{ env.ENVIRONMENT }}
       run: |-
         docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:latest
         docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$GIT_TAG
