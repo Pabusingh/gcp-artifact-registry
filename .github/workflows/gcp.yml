@@ -63,6 +63,13 @@ jobs:
         docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$ENVIRONMENT
         docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$GIT_TAG
         docker push us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$ENVIRONMENT
-        docker push us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$GIT_TAG            
+        docker push us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$GIT_TAG
+
+    - name: Deploy to Cloud Run
+      env:
+          IMAGE_TAG: ${{ env.ENVIRONMENT }}
+      run: |
+        gcloud run deploy helloworld --image us-central1-docker.pkg.dev/$PROJECT_ID/artifacts/$IMAGE_NAME:$ENVIRONMENT
+
 
 
