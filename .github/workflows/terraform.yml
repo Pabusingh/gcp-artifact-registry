@@ -1,0 +1,29 @@
+name: gcp-terraform-automation
+
+on: [push]
+
+env:
+  GOOGLE_IMPERSONATE_SERVICE_ACCOUNT: 'my-service-account@rare-mechanic-358909.iam.gserviceaccount.com'
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform/terraform
+    steps:
+      - name:  Checkout
+        uses: actions/checkout@master
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan  
+    
