@@ -13,7 +13,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform/terraform
+        working-directory: terraform
     steps:
       - name:  Checkout
         uses: actions/checkout@master
