@@ -3,7 +3,7 @@ name: gcp-terraform-automation
 on: [push]
 
 env:
-  GOOGLE_IMPERSONATE_SERVICE_ACCOUNT: 'my-service-account@rare-mechanic-358909.iam.gserviceaccount.com'
+  GOOGLE_IMPERSONATE_SERVICE_ACCOUNT: my-service-account@rare-mechanic-358909.iam.gserviceaccount.com
 
 jobs:
   terraform:
