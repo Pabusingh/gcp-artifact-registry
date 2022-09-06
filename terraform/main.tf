@@ -1,27 +1,26 @@
 terraform {
-  backend "gcs" {
-   bucket = "terraform-rare-mechanic-358909"
-   prefix = "vidicore-dev/front-end"
-  }
-
   required_providers {
     google = {
-      source                    = "hashicorp/google"
-      version                   = "4.24.0"
+      source  = "hashicorp/google"
+      version = "4.24.0"
     }
   }
 }
 
 provider "google" {
-  project                       = var.project_name
+  project = var.project_name
 }
 
+locals {
+  external_ip_address = "mam-frontend-${var.environment}-external-ip-address"
+  cloud_armor_policy = "mam-frontend-${var.environment}-policy"
+}
 resource "google_compute_global_address" "default" {
-  name                        = var.external_ip_address
+  name = local.external_ip_address
 }
 
 resource "google_compute_security_policy" "security_policy" {
-  name = var.cloud_armor_policy
+  name = local.cloud_armor_policy
 
   rule {
     action   = "allow"

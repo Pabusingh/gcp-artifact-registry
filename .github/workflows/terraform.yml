@@ -4,13 +4,14 @@ on: [push]
 
 env:
   GOOGLE_IMPERSONATE_SERVICE_ACCOUNT: my-service-account@rare-mechanic-358909.iam.gserviceaccount.com
+  TF_VAR_environment: qa
 
 jobs:
   terraform:
     permissions:
       contents: 'read'
       id-token: 'write'
-      
+
     name: 'Terraform'
     runs-on: ubuntu-latest
 

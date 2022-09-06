@@ -15,3 +15,7 @@ variable "cloud_armor_policy" {
   type        = string
   default     = "mam-frontend-dev-policy"
 }
+
+variable "environment" {
+  type = string  
+}
