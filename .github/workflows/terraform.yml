@@ -18,6 +18,13 @@ jobs:
       - name:  Checkout
         uses: actions/checkout@master
 
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          workload_identity_provider: 'projects/325316670694/locations/global/workloadIdentityPools/github-actions/providers/github-actions'
+          service_account: 'my-service-account@rare-mechanic-358909.iam.gserviceaccount.com'  
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
