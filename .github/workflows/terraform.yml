@@ -34,7 +34,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend-config=${{ env.TF_VAR_environment }}.gcp.tfbackend
 
       - name: Terraform Plan
         run: terraform plan  
