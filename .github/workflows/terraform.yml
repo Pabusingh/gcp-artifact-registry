@@ -38,4 +38,7 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars
+
+      - name: Terraform Apply
+        run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
     
