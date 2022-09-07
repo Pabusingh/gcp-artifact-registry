@@ -37,5 +37,5 @@ jobs:
         run: terraform init -backend-config=${{ env.TF_VAR_environment }}.gcp.tfbackend
 
       - name: Terraform Plan
-        run: terraform plan -var-file="qa.tfvars"
+        run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars
     
