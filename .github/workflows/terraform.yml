@@ -37,8 +37,8 @@ jobs:
         run: terraform init -backend-config=${{ env.TF_VAR_environment }}.gcp.tfbackend
 
       - name: Terraform Plan
-        run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars -out=tfplan
+        run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars
 
       - name: Terraform Apply
-        run: terraform apply tfplan -auto-approve
+        run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
     
