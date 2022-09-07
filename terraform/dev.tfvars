@@ -1,0 +1,1 @@
+external_ip_address="mam-frontend-dev-external-ip-address"

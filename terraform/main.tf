@@ -12,11 +12,11 @@ provider "google" {
 }
 
 locals {
-  external_ip_address = "mam-frontend-${var.environment}-external-ip-address"
+  # external_ip_address = "mam-frontend-${var.environment}-external-ip-address"
   cloud_armor_policy = "mam-frontend-${var.environment}-policy"
 }
 resource "google_compute_global_address" "default" {
-  name = local.external_ip_address
+  name = var.external_ip_address
 }
 
 resource "google_compute_security_policy" "security_policy" {

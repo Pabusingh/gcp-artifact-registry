@@ -28,7 +28,7 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           workload_identity_provider: 'projects/325316670694/locations/global/workloadIdentityPools/github-actions/providers/github-actions'
-          service_account: 'my-service-account@rare-mechanic-358909.iam.gserviceaccount.com'  
+          service_account: 'my-service-account@rare-mechanic-358909.iam.gserviceaccount.com'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -37,5 +37,5 @@ jobs:
         run: terraform init -backend-config=${{ env.TF_VAR_environment }}.gcp.tfbackend
 
       - name: Terraform Plan
-        run: terraform plan  
+        run: terraform plan -var-file="qa.tfvars"
     
